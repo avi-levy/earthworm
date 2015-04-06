@@ -25,8 +25,9 @@ def arrayPrint(worm, start, end):
 
 def push(worm, dim, move):
     """
-        cur: the location of the earthworm
-        A: the matrix of sand
+        worm = (A, cur) where:
+            cur is the location of the earthworm
+            A is the matrix of sand
         dim: dimensions of the matrix
         move: move to apply to the earthworm
 
@@ -50,19 +51,6 @@ def push(worm, dim, move):
         cur[d] -= dir
         return False
 
-    # if dir == 1:
-    #     bound = dim[d]
-    #     if cur[d] >= bound:
-    #         # don't push - we are at boundary
-    #         cur[d] -= dir
-    #         return
-    # elif dir == -1:
-    #     bound = -1
-    #     if cur[d] <= bound:
-    #         cur[d] -= dir
-    #         # don't push - we are at boundary
-    #         return
-
     if d is 0:
         spot = lambda a: (a, cur[1])
     else:
@@ -85,20 +73,6 @@ def push(worm, dim, move):
 
     # there is no hole to push sand into
     return True
-
-        #     if A[j][cur[1]] is 0:
-        #         # print "hit a 0 at ", j
-        #         for k in range(j, cur[d], -dir):
-        #             # print "copying ", k-dir, " to ", k
-        #             A[k][cur[1]] = A[k - dir][cur[1]]
-        #         break            
-        # elif d is 1:
-        #     if A[cur[0]][j] is 0:
-        #         # print "hit a 0 at ", j
-        #         for k in range(j, cur[d], -dir):
-        #             # print k
-        #             A[cur[0]][k] = A[cur[0]][k - dir]
-        #         break            
 
 def promptMove():
     key = raw_input()
@@ -135,15 +109,10 @@ def promptDim(name, h, w):
         width = int(width.split()[0])
 
     return height, width
-    # sdim[0] = int(raw_input('Enter height of %s: ' % s).split()[0])
-    # if not sdim[0]:
-    #     return
-    # sdim[1] = int(raw_input('Enter width of %s: ' % s).split()[0])
-    # if not sdim[1]:
-    #     return
-    # return sdim
 
 def initialize(dim):
+    # Random initial configuration:
+    # [[r.randint(0,1) for i in range(dim[0])] for j in range(dim[1])]
     return (
             [[1 for i in range(dim[1])] for j in range(dim[0])],
             [dim[0]/2, dim[1]/2]
@@ -233,23 +202,3 @@ while True:
 
     if raw_input('Run again? [y/n]: ') != 'y':
         break
-    #r = SystemRandom()
-    #A = [[r.randint(0,1) for i in range(dim[0])] for j in range(dim[1])]
-    # A = [[1 for i in range(dim[1])] for j in range(dim[0])]
-    # cur = [dim[0]/2, dim[1]/2]
-
-    # A, cur = initialize(dim)
-    
-    # key = None
-    # while key is not 'q':
-    # for x in range(steps):
-        #arrayPrint(cur, A)
-        #print
-
-        # a = nextPushRand()
-        # dir, slope = nextPushRand()
-        # print dir
-        # push(cur, A, dim, randomMove())
-        #print x
-    
-
