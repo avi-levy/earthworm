@@ -1,5 +1,5 @@
 # Earthworm
-Simulations of the Earthworm model introduced by Burdy et. al.
+Simulations of the Earthworm model introduced by Burdzy et. al.
 
 Type `python randEarthworm.py` in a terminal to run it.
 
